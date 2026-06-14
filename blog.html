@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zamyšlení — Blog | Mgr. Martin Poláček, psychoterapie Plzeň</title>
+  <meta name="description" content="Krátká zamyšlení nad tématy, která mě míjejí v praxi i v životě — o osamělosti, vztazích, psychické odolnosti a dalších lidských tématech." />
+  <meta name="theme-color" content="#f5efe4" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ====== BLOG-SPECIFIC ====== */
+    .page-hero h1 em{font-style:italic;color:var(--clay)}
+    .page-hero .lead{max-width:50ch;margin-top:18px}
+
+    /* Featured article block */
+    .article-featured{background:var(--linen);padding:clamp(50px,7vw,90px) 0}
+    .article-wrap{max-width:760px;margin:0 auto}
+    .article-meta{
+      display:flex;align-items:center;gap:18px;
+      font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--muted);margin-bottom:20px;font-weight:500;
+    }
+    .article-meta .dot{width:4px;height:4px;border-radius:50%;background:var(--sage-400)}
+    .article-meta .tag{color:var(--sage-600)}
+
+    .article-title{
+      font-family:'Cormorant Garamond',serif;font-weight:400;
+      font-size:clamp(2.4rem,5vw,3.6rem);line-height:1.1;
+      color:var(--ink);margin-bottom:22px;letter-spacing:-.01em;
+    }
+    .article-title em{font-style:italic;color:var(--clay)}
+    .article-lede{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:1.35rem;line-height:1.55;color:var(--sage-800);
+      margin-bottom:42px;padding-left:20px;border-left:2px solid var(--sage-400);
+    }
+    .article-img{
+      margin:0 calc(var(--gutter) * -1) 42px;
+      border-radius:var(--radius);overflow:hidden;
+      box-shadow:0 24px 64px -30px rgba(28,35,33,.3);
+    }
+    .article-img img{width:100%;height:auto;display:block}
+    .article-img figcaption{
+      padding:14px 22px;font-size:.82rem;color:var(--muted);font-style:italic;
+      background:var(--linen-2);line-height:1.55;
+    }
+
+    .article-body p{
+      font-size:1.08rem;line-height:1.85;color:var(--ink-soft);
+      margin-bottom:22px;
+    }
+    .article-body p:first-of-type::first-letter{
+      font-family:'Cormorant Garamond',serif;font-size:4.5rem;
+      float:left;line-height:.85;padding-right:12px;padding-top:8px;
+      font-weight:500;color:var(--sage-800);font-style:italic;
+    }
+    .article-body strong{color:var(--ink);font-weight:500}
+
+    .article-foot{
+      margin-top:48px;padding-top:32px;border-top:1px solid var(--linen-3);
+      display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    }
+    .article-author{display:flex;align-items:center;gap:14px}
+    .article-author .avatar{
+      width:48px;height:48px;border-radius:50%;overflow:hidden;
+      background:var(--sage-200);flex-shrink:0;
+    }
+    .article-author .avatar img{width:100%;height:100%;object-fit:cover}
+    .article-author strong{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.05rem;line-height:1.2}
+    .article-author small{font-size:.78rem;color:var(--muted);letter-spacing:.06em}
+
+    /* Next articles placeholder */
+    #soon{background:var(--linen-2);text-align:center}
+    .soon-inner{max-width:620px;margin:0 auto}
+    .soon-inner h2{margin-top:14px;margin-bottom:14px}
+    .soon-inner p{color:var(--ink-soft);line-height:1.75;font-size:1.02rem}
+    .soon-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+      margin-top:42px;
+    }
+    .soon-card{
+      background:var(--linen);padding:28px 24px;border-radius:var(--radius);
+      border:1px dashed var(--linen-3);color:var(--muted);
+      font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.1rem;
+      display:flex;align-items:center;justify-content:center;min-height:140px;
+      text-align:center;line-height:1.4;
+    }
+    .soon-card small{
+      display:block;font-family:'Inter',sans-serif;font-style:normal;
+      font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--sage-600);margin-top:10px;
+    }
+
+    @media (max-width:820px){
+      .article-img{margin:0 0 32px}
+    }
+    @media (max-width:600px){
+      .soon-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="wrap">
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Mgr. Martin Poláček">
+        <span class="brand-mark">mp</span>
+        <span class="brand-text">
+          <strong>Mgr. Martin Poláček</strong>
+          <small>Poradenská psychoterapie · Plzeň</small>
+        </span>
+      </a>
+      <nav aria-label="Hlavní navigace">
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="index.html#pomoc">Co nabízím</a></li>
+          <li><a href="blog.html" class="active">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+420739019133" class="cta-phone">
+        <span>+420 739 019 133</span>
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" role="navigation">
+    <a href="o-mne.html">O mně</a>
+    <a href="index.html#pomoc">Co nabízím</a>
+    <a href="blog.html">Blog</a>
+    <a href="akce.html">Akce</a>
+    <a href="krasy-kolem-nas.html">Krásy kolem nás</a>
+    <a href="index.html#cenik">Ceník</a>
+    <a href="odkazy.html">Odkazy v nouzi</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="tel:+420739019133">+420 739 019 133</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div data-r>
+      <div class="page-crumbs"><a href="index.html">Úvod</a> &nbsp;/&nbsp; Blog</div>
+      <div class="eyebrow">Krátká zamyšlení</div>
+      <h1 style="margin-top:14px">Zamyšlení <em>nad&nbsp;tím,<br>co potkáváme</em></h1>
+      <p class="lead">
+        Občas narazím na téma — ve filmu, v&nbsp;knize, v&nbsp;sezení — které
+        stojí za&nbsp;to pojmenovat. Tady o&nbsp;nich píšu. Krátce, osobně, bez&nbsp;ambice
+        vyřešit svět.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED ARTICLE (nejnovější) -->
+<section class="article-featured">
+  <div class="wrap">
+    <article class="article-wrap" data-r>
+      <div class="article-meta">
+        <span class="tag">Všímavost &amp; panika</span>
+        <span class="dot"></span>
+        <span>30. května 2026</span>
+        <span class="dot"></span>
+        <span>3 min čtení</span>
+      </div>
+
+      <h2 class="article-title">V tenatech <em>paniky</em></h2>
+
+      <p class="article-lede">
+        Drobná příhoda z&nbsp;výletu — píchlá pneumatika, narůstající panika
+        a&nbsp;malé poučení o&nbsp;tom, jak nám v&nbsp;krizi pomáhá chladná hlava
+        a&nbsp;všímavost.
+      </p>
+
+      <figure class="article-img">
+        <img src="photos/blog/v-tenatech-paniky.jpg" alt="Rezerva a nářadí — vlastní fotografie k článku V tenatech paniky" />
+        <figcaption>„Klíčová byla ta blbůstka…" — vlastní fotografie.</figcaption>
+      </figure>
+
+      <div class="article-body">
+        <p>
+          V&nbsp;sobotu jsem si vyrazil autem na&nbsp;výlet. Sjedu z&nbsp;asfaltky
+          zaparkovat hezky do&nbsp;stínu. Vylezu z&nbsp;auta a&nbsp;ejhle:
+          „Ssssss." Nebyl to had, ale pořádný hřebík zaražený do&nbsp;pneumatiky.
+          Chvíle emoční bouře: „Do&nbsp;pr…!" Uklidňuju se. Zas taková tragédie
+          to snad nebude: chvíle zdržení a&nbsp;doma se postarat o&nbsp;opravu.
+          To jsem však netušil, jaké martýrium mě teprve čeká!
+        </p>
+
+        <p>
+          Vytáhnu rezervu s&nbsp;klíčem k&nbsp;uvolnění šroubů. Ale jejda, ať to
+          zkouším, jak zkouším, klíč na&nbsp;šrouby kola ne a&nbsp;ne napasovat.
+          „Do&nbsp;pr…", ulevuji si na&nbsp;adresu lajdáků ze&nbsp;Škodovky, kteří
+          k&nbsp;rezervě dali nepatřičný klíč. Začínám se potit. Do&nbsp;toho vedle
+          mě zaparkuje pán se dvěma kluky. A&nbsp;je mi trochu líp, protože to mám
+          s&nbsp;kým sdílet. A&nbsp;nejen to, pán aktivně vytahuje z&nbsp;auta
+          přehlídku klíčů. Všechno marné. Pobaví mě hláškou, „že jsem ho zachránil":
+          nebýt mě, tak by si na&nbsp;ten hřebík ve&nbsp;stínu najel sám.
+        </p>
+
+        <p>
+          Nijak zvlášť mě to nepotěší, nervozita narůstá: co teď?! A&nbsp;jak je to
+          vůbec možné, že klíč nepasuje?! Auto je dva roky staré, rezerva
+          s&nbsp;příslušenstvím funglovka. Zase mě opanovává emoční bouře, pocit
+          zmaru, naštvání, panika… Ale nakonec… po&nbsp;telefonické konzultaci, kdy
+          už jsem se smiřoval s&nbsp;vidinou odtahu, se ukázalo, že klíčová byla ta
+          blbůstka, kterou moje oči při&nbsp;vyndávání rezervy jen přelétly:
+          <strong>umělohmotná pinzeta!</strong> Tou se prosím pěkně sundávají
+          umělohmotné krytky šroubů. Koho by to ovšem nenapadlo, že&nbsp;– obzvlášť
+          když dokonale imitují kov.
+        </p>
+
+        <p>
+          A&nbsp;tak jsem si z&nbsp;výletu odnesl názorné poučení, jak důležitou
+          roli může v&nbsp;prevenci a&nbsp;řešení panické ataky hrát
+          <strong>mindfulness, všímavost a&nbsp;zachování chladné hlavy</strong>,
+          selského rozumu. Vím, že se to snadno řekne, ale možná, že často máme
+          po&nbsp;ruce vše, co ke&nbsp;zvládnutí potřebujeme.
+        </p>
+      </div>
+
+      <div class="article-foot">
+        <div class="article-author">
+          <div class="avatar"><img src="photos/portrait.jpg" alt="Martin Poláček" /></div>
+          <div>
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Psychoterapeut · Plzeň</small>
+          </div>
+        </div>
+        <a href="index.html#kontakt" class="btn btn-secondary" style="padding:10px 22px;font-size:.82rem">Domluvit konzultaci&nbsp;→</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- STARŠÍ ČLÁNEK -->
+<section class="article-featured">
+  <div class="wrap">
+    <article class="article-wrap" data-r>
+      <div class="article-meta">
+        <span class="tag">Osamělost &amp; kontakt</span>
+        <span class="dot"></span>
+        <span>10. května 2026</span>
+        <span class="dot"></span>
+        <span>4 min čtení</span>
+      </div>
+
+      <h2 class="article-title">Drahý <em>zítřku</em></h2>
+
+      <p class="article-lede">
+        Cítíte se osamělí, izolovaní? Dokument z&nbsp;festivalu Jeden svět pojednává
+        právě o takovém fenoménu — sociální izolaci.
+      </p>
+
+      <figure class="article-img">
+        <img src="photos/blog/osamelost.jpg" alt="Osamělost — vlastní fotografie k článku Drahý zítřku" />
+        <figcaption>„Osamělost" — vlastní fotografie.</figcaption>
+      </figure>
+
+      <div class="article-body">
+        <p>
+          Asi nikde jinde na&nbsp;světě to nemůže být paradoxnější než
+          v&nbsp;Tokyu, třicetimilionové megapoli, kde lidé žijí namačkáni jako
+          sardinky, ale trpí stále větším nedostatkem obyčejné lidské vzájemnosti.
+          V&nbsp;Japonsku se dá mluvit přímo o&nbsp;epidemii — osamělost trápí
+          přes <strong>30&nbsp;% populace</strong>.
+        </p>
+
+        <p>
+          Pro dva aktéry filmu — muže a&nbsp;ženu na prahu padesátky, kteří kromě
+          svého dětství nepoznali blízký vztah — svitne nová naděje. Především
+          díky chatové podpoře neziskovky, která je zachytí v&nbsp;nejhlubší
+          krizi, kdy chtějí ukončit svůj život. <strong>Konečně jim někdo
+          v&nbsp;jejich bolestech vážně naslouchá.</strong>
+        </p>
+
+        <p>
+          A povzbudí v&nbsp;hledání nového smyslu života — muž si pořídí sovu,
+          která mu pak nečekaně pomáhá bourat komunikační bariéry; žena naváže
+          životodárný kontakt s&nbsp;podobně osamělou kamarádkou ze&nbsp;střední.
+        </p>
+      </div>
+
+      <div class="article-foot">
+        <div class="article-author">
+          <div class="avatar"><img src="photos/portrait.jpg" alt="Martin Poláček" /></div>
+          <div>
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Psychoterapeut · Plzeň</small>
+          </div>
+        </div>
+        <a href="index.html#kontakt" class="btn btn-secondary" style="padding:10px 22px;font-size:.82rem">Domluvit konzultaci&nbsp;→</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- COMING SOON -->
+<section id="soon">
+  <div class="wrap soon-inner" data-r>
+    <div class="eyebrow eyebrow--center">Chystám další</div>
+    <h2>Další zamyšlení <em>připravuji</em></h2>
+    <p>
+      Blog budu pravidelně doplňovat — asi&nbsp;jednou za&nbsp;čtrnáct dní.
+      Témata budou různá: ze sezení, z&nbsp;knih, z&nbsp;filmů, z&nbsp;každodennosti.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">mp</span>
+          <span class="brand-text">
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Poradenská psychoterapie · Plzeň</small>
+          </span>
+        </a>
+        <p>Psychoterapeutická praxe pro dospívající, mladé dospělé&nbsp;a rodiny. Gestalt&nbsp;přístup a arteterapie.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Web</h4>
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="krasy-kolem-nas.html">Krásy kolem nás</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="odkazy.html">Odkazy v&nbsp;nouzi</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+420739019133">+420 739 019 133</a></li>
+          <li><a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a></li>
+          <li>Zikmunda Wintra 21</li>
+          <li>301 00 Plzeň</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Najdete mě i&nbsp;zde</h4>
+        <ul>
+          <li><a href="https://www.firmy.cz/detail/13888345-mgr-martin-polacek-psychoterapie-plzen-jizni-predmesti.html" target="_blank" rel="noopener">Firmy.cz&nbsp;↗</a></li>
+          <li><a href="https://czap.cz/adresar" target="_blank" rel="noopener">Adresář ČAP&nbsp;↗</a></li>
+          <li><a href="https://dusevnizdravi.vzp.cz/seznam-terapeutu/" target="_blank" rel="noopener">VZP Duševní zdraví&nbsp;↗</a></li>
+          <li><a href="https://csgt.cz/terapeuti-plzensky-kraj/" target="_blank" rel="noopener">ČSGT&nbsp;↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mgr. Martin Poláček · IČO 09438661</span>
+      <span>Web: <a href="https://strankyprovas.cz" target="_blank" rel="noopener">StránkyProVás</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const progress=document.getElementById('progress');
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>{const pct=(window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight))*100;progress.style.width=pct+'%';header.classList.toggle('scrolled',window.scrollY>10)});
+  const btn=document.getElementById('hamburgerBtn'),menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

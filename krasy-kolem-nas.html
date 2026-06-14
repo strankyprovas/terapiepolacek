@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Krásy kolem nás — Mgr. Martin Poláček | fotogalerie</title>
+  <meta name="description" content="Fotky, které jsem zachytil kolem sebe. Detail, příroda, člověk a kultura. A postupně i má vlastní výtvarná tvorba." />
+  <meta name="theme-color" content="#f5efe4" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .page-hero h1 em{font-style:italic;color:var(--clay)}
+    .kk-intro{
+      background:var(--linen);padding:clamp(40px,5vw,70px) 0;
+      border-top:1px solid var(--linen-3);border-bottom:1px solid var(--linen-3);
+    }
+    .kk-intro-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+      max-width:1000px;margin:0 auto;
+    }
+    .kk-intro blockquote{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:clamp(1.4rem,2.8vw,1.9rem);line-height:1.45;color:var(--ink);
+    }
+    .kk-intro blockquote::before{
+      content:'"';font-family:'Cormorant Garamond',serif;font-size:4rem;
+      line-height:0.5;color:var(--clay);display:block;margin-bottom:12px;
+    }
+    .kk-intro p{color:var(--ink-soft);line-height:1.75;font-size:1.02rem;margin-top:22px}
+    .kk-intro .tag{
+      display:inline-block;font-size:.72rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--sage-600);
+      margin-bottom:14px;font-weight:500;
+    }
+
+    /* ─── jump nav ─── */
+    .kk-jump{background:var(--linen-2);padding:32px 0;border-bottom:1px solid var(--linen-3)}
+    .kk-jump-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .kk-jump a{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:12px 22px;background:var(--linen);border:1px solid var(--linen-3);
+      border-radius:99px;font-size:.9rem;color:var(--ink);
+      transition:all .25s;
+    }
+    .kk-jump a:hover{background:var(--sage-50);border-color:var(--sage-300);color:var(--sage-800)}
+    .kk-jump a small{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      color:var(--clay);font-weight:500;
+    }
+
+    /* ─── category section ─── */
+    .kk-cat{padding:clamp(64px,8vw,120px) 0;border-top:1px solid var(--linen-3)}
+    .kk-cat:nth-of-type(odd){background:var(--linen)}
+    .kk-cat:nth-of-type(even){background:var(--linen-2)}
+    .kk-cat-head{
+      display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:end;
+      margin-bottom:48px;
+    }
+    .kk-cat-num{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:clamp(3rem,6vw,4.5rem);font-weight:400;
+      color:var(--clay);line-height:1;
+    }
+    .kk-cat-title{display:flex;flex-direction:column;gap:8px}
+    .kk-cat-title .eyebrow{margin-bottom:6px}
+    .kk-cat-title h2{
+      font-family:'Cormorant Garamond',serif;font-weight:400;
+      font-size:clamp(2rem,4vw,3rem);line-height:1.05;
+      letter-spacing:-0.01em;color:var(--ink);
+    }
+    .kk-cat-title h2 em{font-style:italic;color:var(--clay)}
+    .kk-cat-title p{color:var(--ink-soft);max-width:54ch;line-height:1.65;font-size:1rem}
+
+    /* ─── gallery grid ─── */
+    .kk-gallery{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+    }
+    .kk-photo{
+      cursor:zoom-in;overflow:hidden;border-radius:var(--radius);
+      background:var(--linen-3);position:relative;
+      transition:transform .35s,box-shadow .35s;
+    }
+    .kk-photo:hover{transform:translateY(-2px);box-shadow:0 16px 40px -22px rgba(28,35,33,.35)}
+    .kk-photo img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      aspect-ratio:1/1;
+      transition:transform .8s cubic-bezier(.2,.8,.3,1);
+    }
+    .kk-photo:hover img{transform:scale(1.05)}
+    .kk-photo-caption{
+      position:absolute;left:0;right:0;bottom:0;
+      background:linear-gradient(180deg,transparent 0%,rgba(28,35,33,.65) 100%);
+      color:#fff;padding:36px 16px 14px;font-size:.78rem;
+      letter-spacing:.06em;opacity:0;transform:translateY(8px);
+      transition:opacity .3s,transform .3s;
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+    }
+    .kk-photo:hover .kk-photo-caption{opacity:1;transform:translateY(0)}
+
+    /* ─── lightbox ─── */
+    .lightbox{
+      position:fixed;inset:0;background:rgba(28,35,33,.92);
+      display:none;align-items:center;justify-content:center;
+      z-index:9999;padding:32px;cursor:zoom-out;
+      opacity:0;transition:opacity .25s;
+    }
+    .lightbox.open{display:flex;opacity:1}
+    .lightbox img{
+      max-width:92vw;max-height:80vh;object-fit:contain;
+      box-shadow:0 30px 80px rgba(0,0,0,.6);border-radius:6px;
+    }
+    .lightbox-caption{
+      position:absolute;bottom:32px;left:32px;right:32px;
+      text-align:center;color:#fff;font-family:'Cormorant Garamond',serif;
+      font-style:italic;font-size:1.1rem;letter-spacing:.02em;
+    }
+    .lightbox-close{
+      position:absolute;top:24px;right:24px;
+      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+      color:#fff;width:44px;height:44px;border-radius:50%;
+      font-size:1.4rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .lightbox-close:hover{background:rgba(255,255,255,.2)}
+
+    /* ─── arteterapie teaser ─── */
+    #arteterapie-teaser{background:var(--linen);padding:clamp(60px,8vw,100px) 0;border-top:1px solid var(--linen-3)}
+    .at-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,72px);align-items:center}
+    .at-img{aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;box-shadow:0 24px 60px -30px rgba(28,35,33,.3);max-width:420px}
+    .at-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .at-text h2{margin-bottom:22px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2rem,3.5vw,2.6rem);line-height:1.1;letter-spacing:-0.01em}
+    .at-text h2 em{color:var(--clay);font-style:italic}
+    .at-text p{color:var(--ink-soft);line-height:1.8;font-size:1.02rem;margin-bottom:16px}
+    .at-text .caption{
+      display:inline-block;margin-top:16px;padding:10px 16px;
+      background:var(--sage-50);border-left:2px solid var(--sage-400);
+      font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;
+      color:var(--sage-800);
+    }
+
+    /* ─── tvorba grid ─── */
+    .tvorba-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+      margin-top:48px;
+    }
+    .tvorba-card{
+      cursor:zoom-in;border-radius:var(--radius);overflow:hidden;
+      background:var(--linen);box-shadow:0 8px 24px -14px rgba(28,35,33,.25);
+      transition:transform .35s,box-shadow .35s;
+      display:flex;flex-direction:column;
+    }
+    .tvorba-card:hover{transform:translateY(-3px);box-shadow:0 22px 50px -22px rgba(28,35,33,.35)}
+    .tvorba-card img{width:100%;aspect-ratio:1/1.3;object-fit:cover;display:block}
+    .tvorba-card-body{padding:20px 22px}
+    .tvorba-card-body h3{
+      font-family:'Cormorant Garamond',serif;font-weight:500;font-style:italic;
+      font-size:1.3rem;color:var(--sage-800);
+    }
+    .tvorba-card-body small{
+      font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+      color:var(--clay);font-weight:500;
+    }
+
+    @media (max-width:1000px){
+      .kk-gallery{grid-template-columns:repeat(2,1fr)}
+      .kk-intro-grid{grid-template-columns:1fr;gap:30px}
+      .tvorba-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:820px){
+      .at-grid{grid-template-columns:1fr;gap:32px}
+      .at-img{max-width:360px;margin:0 auto}
+      .kk-cat-head{grid-template-columns:1fr;gap:14px}
+    }
+    @media (max-width:600px){
+      .kk-gallery{grid-template-columns:1fr}
+      .tvorba-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="header">
+  <div class="wrap">
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Mgr. Martin Poláček">
+        <span class="brand-mark">mp</span>
+        <span class="brand-text">
+          <strong>Mgr. Martin Poláček</strong>
+          <small>Poradenská psychoterapie · Plzeň</small>
+        </span>
+      </a>
+      <nav aria-label="Hlavní navigace">
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="index.html#pomoc">Co nabízím</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+420739019133" class="cta-phone"><span>+420 739 019 133</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" role="navigation">
+    <a href="o-mne.html">O mně</a>
+    <a href="index.html#pomoc">Co nabízím</a>
+    <a href="blog.html">Blog</a>
+    <a href="akce.html">Akce</a>
+    <a href="krasy-kolem-nas.html">Krásy kolem nás</a>
+    <a href="index.html#cenik">Ceník</a>
+    <a href="odkazy.html">Odkazy v nouzi</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="tel:+420739019133">+420 739 019 133</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div data-r>
+      <div class="page-crumbs"><a href="index.html">Úvod</a> &nbsp;/&nbsp; Krásy kolem nás</div>
+      <div class="eyebrow">Fotogalerie</div>
+      <h1 style="margin-top:14px">Krásy, které <em>nás obklopují</em></h1>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO / KRÉDO -->
+<section class="kk-intro">
+  <div class="wrap kk-intro-grid">
+    <div data-r>
+      <span class="tag">Krédo galerie</span>
+      <blockquote>
+        Rád se dívám okolo sebe a&nbsp;zvěčňuji to, co mě zaujme, do&nbsp;svého
+        mobilu. Tak se s&nbsp;vámi tady o&nbsp;to chci podělit.
+      </blockquote>
+    </div>
+    <div data-r data-d="1">
+      <p>
+        Galerii budu <strong style="color:var(--sage-800);font-weight:500">pravidelně doplňovat</strong> — přibližně
+        jednou za&nbsp;14&nbsp;dní o&nbsp;několik nových fotek. Fotky jsou rozděleny
+        do&nbsp;tří tematických oblastí: <em>Detail</em>, <em>Příroda</em>
+        a&nbsp;<em>Člověk a&nbsp;kultura</em>.
+      </p>
+      <p>
+        Postupně se sem budou dostávat i&nbsp;ukázky mojí vlastní výtvarné
+        tvorby — výtvarno je pro mě způsob, jak prožívat svět.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- JUMP NAV -->
+<section class="kk-jump">
+  <div class="wrap">
+    <div class="kk-jump-row" data-r>
+      <a href="#detail"><small>01</small> Detail</a>
+      <a href="#priroda"><small>02</small> Příroda</a>
+      <a href="#clovek-kultura"><small>03</small> Člověk a&nbsp;kultura</a>
+      <a href="#vlastni-tvorba"><small>04</small> Moje tvorba</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DETAIL ═══ -->
+<section class="kk-cat" id="detail">
+  <div class="wrap">
+    <div class="kk-cat-head" data-r>
+      <span class="kk-cat-num">01</span>
+      <div class="kk-cat-title">
+        <span class="eyebrow">Kategorie</span>
+        <h2><em>Detail</em></h2>
+        <p>
+          Drobné věci, kterých si obvykle nevšímáme — ale stojí za&nbsp;to
+          se u&nbsp;nich zastavit.
+        </p>
+      </div>
+    </div>
+
+    <div class="kk-gallery">
+      <figure class="kk-photo" data-r data-src="photos/krasy/detail/detail-01.jpg" data-cap="List či stromek plný ovoce?">
+        <img src="photos/krasy/detail/detail-01.jpg" alt="Listy" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/detail/detail-02.jpg" data-cap="Krasavice v mechu.">
+        <img src="photos/krasy/detail/detail-02.jpg" alt="Muchomůrka" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/detail/detail-03.jpg" data-cap="Lišejníková chobotnice.">
+        <img src="photos/krasy/detail/detail-03.jpg" alt="Lišejník" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-src="photos/krasy/detail/detail-04.jpg" data-cap="Mráz si hraje.">
+        <img src="photos/krasy/detail/detail-04.jpg" alt="Led" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/detail/detail-05.jpg" data-cap="Ledové zjevení na potoce.">
+        <img src="photos/krasy/detail/detail-05.jpg" alt="Led na vodě" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/detail/detail-06.jpg" data-cap="Píchavky: „Tak už sme bouchly!"">
+        <img src="photos/krasy/detail/detail-06.jpg" alt="Píchavky" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-src="photos/krasy/detail/detail-07.jpg" data-cap="Pohled do světa neuronů?">
+        <img src="photos/krasy/detail/detail-07.jpg" alt="Pohled do světa neuronů?" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/detail/detail-08.jpg" data-cap="Šípková krasavice.">
+        <img src="photos/krasy/detail/detail-08.jpg" alt="Šípková krasavice" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/detail/detail-09.jpg" data-cap="Maková panenka.">
+        <img src="photos/krasy/detail/detail-09.jpg" alt="Maková panenka" loading="lazy" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PŘÍRODA ═══ -->
+<section class="kk-cat" id="priroda">
+  <div class="wrap">
+    <div class="kk-cat-head" data-r>
+      <span class="kk-cat-num">02</span>
+      <div class="kk-cat-title">
+        <span class="eyebrow">Kategorie</span>
+        <h2><em>Příroda</em></h2>
+        <p>
+          Lesy, hory, řeky, oblohy… místa, kam chodím dobíjet baterky.
+        </p>
+      </div>
+    </div>
+
+    <div class="kk-gallery">
+      <figure class="kk-photo" data-r data-src="photos/krasy/priroda/priroda-01.jpg" data-cap="Říčka Černá u Potůčků.">
+        <img src="photos/krasy/priroda/priroda-01.jpg" alt="Potok" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/priroda/priroda-02.jpg" data-cap="Obloha hoří západem slunce.">
+        <img src="photos/krasy/priroda/priroda-02.jpg" alt="Západ slunce" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/priroda/priroda-03.jpg" data-cap="Zima v Brdech u Strašic.">
+        <img src="photos/krasy/priroda/priroda-03.jpg" alt="Zimní stromy" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-src="photos/krasy/priroda/priroda-04.jpg" data-cap="Zamrzlý pohled do svobody.">
+        <img src="photos/krasy/priroda/priroda-04.jpg" alt="Zimní oplocenka" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/priroda/priroda-05.jpg" data-cap="3D krajky na Klabavě.">
+        <img src="photos/krasy/priroda/priroda-05.jpg" alt="Rampouchy" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/priroda/priroda-06.jpg" data-cap="Tajemná lesní brána. Co se za ní skrývá?">
+        <img src="photos/krasy/priroda/priroda-06.jpg" alt="Stromořadí" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-src="photos/krasy/priroda/priroda-07.jpg" data-cap="Na rande.">
+        <img src="photos/krasy/priroda/priroda-07.jpg" alt="Na rande" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/priroda/priroda-08.jpg" data-cap="Iónský či dórský sloup? Bobře raď!">
+        <img src="photos/krasy/priroda/priroda-08.jpg" alt="Iónský či dórský sloup? Bobře raď!" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/priroda/priroda-09.jpg" data-cap="Rodinka pankáčů.">
+        <img src="photos/krasy/priroda/priroda-09.jpg" alt="Rodinka pankáčů" loading="lazy" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ČLOVĚK A KULTURA ═══ -->
+<section class="kk-cat" id="clovek-kultura">
+  <div class="wrap">
+    <div class="kk-cat-head" data-r>
+      <span class="kk-cat-num">03</span>
+      <div class="kk-cat-title">
+        <span class="eyebrow">Kategorie</span>
+        <h2>Člověk a&nbsp;<em>kultura</em></h2>
+        <p>
+          Stopa člověka v&nbsp;krajině, architektuře, umění, které stojí za&nbsp;to
+          zachytit.
+        </p>
+      </div>
+    </div>
+
+    <div class="kk-gallery">
+      <figure class="kk-photo" data-r data-src="photos/krasy/clovek-kultura/clovek-01.jpg" data-cap="Jarní idyla.">
+        <img src="photos/krasy/clovek-kultura/clovek-01.jpg" alt="Domek u potoka" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/clovek-kultura/clovek-02.jpg" data-cap="Lovecký zámeček Tři Trubky.">
+        <img src="photos/krasy/clovek-kultura/clovek-02.jpg" alt="Lovecký zámeček" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/clovek-kultura/clovek-03.jpg" data-cap="Ač stejné, přesto originální.">
+        <img src="photos/krasy/clovek-kultura/clovek-03.jpg" alt="Poštovní schránky" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-src="photos/krasy/clovek-kultura/clovek-04.jpg" data-cap="Malebné zákoutí Kutné Hory.">
+        <img src="photos/krasy/clovek-kultura/clovek-04.jpg" alt="Portál" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/clovek-kultura/clovek-05.jpg" data-cap="Memento mori! (zahrada kutnohorské galerie GASK)">
+        <img src="photos/krasy/clovek-kultura/clovek-05.jpg" alt="Memento mori" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="2" data-src="photos/krasy/clovek-kultura/clovek-06.jpg" data-cap="Jiří Trnka: Ruka.">
+        <img src="photos/krasy/clovek-kultura/clovek-06.jpg" alt="Jiří Trnka: Ruka" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-src="photos/krasy/clovek-kultura/clovek-07.jpg" data-cap="Mraky člověče nespoutáš!">
+        <img src="photos/krasy/clovek-kultura/clovek-07.jpg" alt="Mraky člověče nespoutáš!" loading="lazy" />
+      </figure>
+      <figure class="kk-photo" data-r data-d="1" data-src="photos/krasy/clovek-kultura/clovek-08.jpg" data-cap="Nevěsta ve školce.">
+        <img src="photos/krasy/clovek-kultura/clovek-08.jpg" alt="Nevěsta ve školce" loading="lazy" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ VLASTNÍ TVORBA ═══ -->
+<section id="arteterapie-teaser">
+  <div class="wrap">
+    <div class="at-grid">
+      <div class="at-img" data-r>
+        <img src="photos/tvorba/odysea.jpg" alt="Odysea — vlastní tvorba" />
+      </div>
+      <div class="at-text" data-r data-d="1">
+        <div class="eyebrow">Moje vlastní tvorba</div>
+        <h2>Když obraz <em>promluví</em><br>za mě i&nbsp;za klienty</h2>
+        <p>
+          Výtvarno mě baví — proto jsem si i&nbsp;pro soukromou praxi našel
+          pracovnu s&nbsp;menším ateliérem. Postupně sem přidávám ukázky svých
+          vlastních prací s&nbsp;krátkým komentářem, co pro mě znamenají.
+        </p>
+        <p>
+          Do budoucna bych rád nabízel některé práce i&nbsp;ke&nbsp;koupi —
+          třeba jako podporu pro klienty, kteří by terapii těžko financovali.
+          <strong style="color:var(--sage-800);font-weight:500;">Výtvarno je pro mě cestou k&nbsp;sobě i&nbsp;k&nbsp;druhým.</strong>
+        </p>
+        <span class="caption">„Výtvarno mě moc baví. To je takový můj sen."</span>
+      </div>
+    </div>
+
+    <div id="vlastni-tvorba" style="margin-top:80px;">
+      <div class="kk-cat-head" data-r>
+        <span class="kk-cat-num">04</span>
+        <div class="kk-cat-title">
+          <span class="eyebrow">Z mé tvorby</span>
+          <h2>Vybrané <em>práce</em></h2>
+          <p>
+            Vybrané práce z&nbsp;poslední doby. Klikněte pro&nbsp;zvětšení.
+          </p>
+        </div>
+      </div>
+
+      <div class="tvorba-grid">
+        <figure class="tvorba-card" data-r data-src="photos/tvorba/odysea.jpg" data-cap="Odysea — vlastní tvorba">
+          <img src="photos/tvorba/odysea.jpg" alt="Odysea" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Odysea</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-d="1" data-src="photos/tvorba/la-corida.jpg" data-cap="La corida — vlastní tvorba">
+          <img src="photos/tvorba/la-corida.jpg" alt="La corida" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>La corida</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-d="2" data-src="photos/tvorba/tajemny-egypt.jpg" data-cap="Tajemný Egypt — vlastní tvorba">
+          <img src="photos/tvorba/tajemny-egypt.jpg" alt="Tajemný Egypt" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Tajemný Egypt</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-d="3" data-src="photos/tvorba/za-oponou.jpg" data-cap="Za oponou — vlastní tvorba">
+          <img src="photos/tvorba/za-oponou.jpg" alt="Za oponou" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Za oponou</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-src="photos/tvorba/exploze-zivota.jpg" data-cap="Exploze života — vlastní tvorba">
+          <img src="photos/tvorba/exploze-zivota.jpg" alt="Exploze života" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Exploze života</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-d="1" data-src="photos/tvorba/kytice.jpg" data-cap="Kytice (pastózní akryl) — vlastní tvorba">
+          <img src="photos/tvorba/kytice.jpg" alt="Kytice (pastózní akryl)" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Kytice</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-d="2" data-src="photos/tvorba/osamelost.jpg" data-cap="Osamělost — vlastní tvorba">
+          <img src="photos/tvorba/osamelost.jpg" alt="Osamělost" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Osamělost</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-d="3" data-src="photos/tvorba/jiri-stivin.jpg" data-cap="Usměvavý Jiří Stivín — vlastní tvorba">
+          <img src="photos/tvorba/jiri-stivin.jpg" alt="Usměvavý Jiří Stivín" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Usměvavý Jiří Stivín</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-src="photos/tvorba/arabela.jpg" data-cap="Arabela (skica) — vlastní tvorba">
+          <img src="photos/tvorba/arabela.jpg" alt="Arabela (skica)" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Arabela</h3>
+          </div>
+        </figure>
+        <figure class="tvorba-card" data-r data-d="1" data-src="photos/tvorba/trikralova-sbirka.jpg" data-cap="Tříkrálová sbírka (návrh poděkování) — vlastní tvorba">
+          <img src="photos/tvorba/trikralova-sbirka.jpg" alt="Tříkrálová sbírka (návrh poděkování)" loading="lazy" />
+          <div class="tvorba-card-body">
+            <small>Z vlastní tvorby</small>
+            <h3>Tříkrálová sbírka</h3>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Zavřít">×</button>
+  <img id="lightboxImg" src="" alt="" />
+  <div class="lightbox-caption" id="lightboxCap"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">mp</span>
+          <span class="brand-text">
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Poradenská psychoterapie · Plzeň</small>
+          </span>
+        </a>
+        <p>Psychoterapeutická praxe pro dospívající, mladé dospělé&nbsp;a rodiny. Gestalt&nbsp;přístup a arteterapie.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Web</h4>
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="krasy-kolem-nas.html">Krásy kolem nás</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="odkazy.html">Odkazy v&nbsp;nouzi</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+420739019133">+420 739 019 133</a></li>
+          <li><a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a></li>
+          <li>Zikmunda Wintra 21</li>
+          <li>301 00 Plzeň</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Najdete mě i&nbsp;zde</h4>
+        <ul>
+          <li><a href="https://www.firmy.cz/detail/13888345-mgr-martin-polacek-psychoterapie-plzen-jizni-predmesti.html" target="_blank" rel="noopener">Firmy.cz&nbsp;↗</a></li>
+          <li><a href="https://czap.cz/adresar" target="_blank" rel="noopener">Adresář ČAP&nbsp;↗</a></li>
+          <li><a href="https://dusevnizdravi.vzp.cz/seznam-terapeutu/" target="_blank" rel="noopener">VZP Duševní zdraví&nbsp;↗</a></li>
+          <li><a href="https://csgt.cz/terapeuti-plzensky-kraj/" target="_blank" rel="noopener">ČSGT&nbsp;↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mgr. Martin Poláček · IČO 09438661</span>
+      <span>Web: <a href="https://strankyprovas.cz" target="_blank" rel="noopener">StránkyProVás</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // progress + sticky header
+  const progress=document.getElementById('progress');
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>{const pct=(window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight))*100;progress.style.width=pct+'%';header.classList.toggle('scrolled',window.scrollY>10)});
+
+  // hamburger
+  const btn=document.getElementById('hamburgerBtn'),menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
+
+  // reveal
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+
+  // lightbox
+  const lb=document.getElementById('lightbox');
+  const lbImg=document.getElementById('lightboxImg');
+  const lbCap=document.getElementById('lightboxCap');
+  const lbClose=document.getElementById('lightboxClose');
+  function openLB(src,cap){
+    lbImg.src=src;
+    lbCap.textContent=cap||'';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+  }
+  function closeLB(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  }
+  document.querySelectorAll('[data-src]').forEach(el=>el.addEventListener('click',()=>openLB(el.dataset.src,el.dataset.cap)));
+  lb.addEventListener('click',closeLB);
+  lbClose.addEventListener('click',e=>{e.stopPropagation();closeLB();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+</script>
+
+</body>
+</html>

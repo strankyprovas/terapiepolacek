@@ -1,0 +1,277 @@
+/* ================================================================
+   SHARED STYLES — Mgr. Martin Poláček Psychoterapie
+   used by index.html, o-mne.html, blog.html, akce.html,
+   krasy-kolem-nas.html, odkazy.html
+   ================================================================ */
+
+:root{
+  --linen:#f5efe4;--linen-2:#ece4d3;--linen-3:#ddd1b8;
+  --sage-50:#e3ebe4;--sage-200:#b8c9bc;--sage-400:#7a9380;
+  --sage-600:#4a6a54;--sage-800:#2d4535;
+  --ink:#1c2321;--ink-soft:#3d4644;--muted:#716a5d;
+  --clay:#b86f50;--clay-soft:#d8a48f;
+  --max:1240px;--gutter:clamp(20px,4vw,48px);--radius:4px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;font-weight:400;background:var(--linen);color:var(--ink);line-height:1.65;font-size:16.5px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{font:inherit;background:none;border:none;cursor:pointer;color:inherit}
+
+h1,h2,h3,h4{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-weight:400;line-height:1.15;color:var(--ink);letter-spacing:-.015em}
+h1{font-size:clamp(2.7rem,6.2vw,4.8rem);line-height:1.1}
+h2{font-size:clamp(2rem,4.4vw,3.2rem)}
+h3{font-size:clamp(1.35rem,2.2vw,1.7rem);font-weight:500}
+h4{font-size:1.1rem;font-weight:500}
+em,.italic{font-style:italic;color:var(--sage-600)}
+
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-600)}
+.eyebrow::before{content:"";display:block;width:28px;height:1px;background:var(--sage-400)}
+.eyebrow--center{justify-content:center}
+.eyebrow--light{color:var(--sage-200)}
+.eyebrow--light::before{background:var(--sage-200)}
+.lead{font-size:1.12rem;color:var(--ink-soft);line-height:1.75;max-width:58ch}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+section{padding:clamp(68px,9vw,130px) 0}
+
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--sage-600);z-index:9999;transition:width .1s linear}
+#demo-banner{position:fixed;top:0;left:0;width:100%;z-index:10000;background:#1c2321;color:#f5efe4;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.08em;padding:8px 16px;text-align:center}
+#demo-banner span{color:var(--clay-soft)}
+
+header{position:sticky;top:0;z-index:100;background:rgba(245,239,228,.88);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:rgba(74,106,84,.15)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand-mark{width:42px;height:42px;border-radius:50%;background:var(--sage-600);color:var(--linen);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:500}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-text strong{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.15rem;color:var(--ink)}
+.brand-text small{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-600);font-weight:500}
+nav ul{display:flex;align-items:center;gap:clamp(16px,2.4vw,32px)}
+nav a{font-size:.86rem;font-weight:400;color:var(--ink-soft);position:relative;padding:4px 0;transition:color .2s}
+nav a::after{content:"";position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--sage-600);transform:scaleX(0);transform-origin:right;transition:transform .35s ease}
+nav a:hover,nav a.active{color:var(--sage-800)}
+nav a:hover::after,nav a.active::after{transform:scaleX(1);transform-origin:left}
+.cta-phone{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;font-size:.82rem;font-weight:500;background:var(--ink);color:var(--linen);border-radius:999px;transition:background .25s}
+.cta-phone:hover{background:var(--sage-800)}
+.hamburger{display:none;width:32px;height:32px;flex-direction:column;gap:5px;justify-content:center;align-items:center}
+.hamburger span{display:block;width:22px;height:1.3px;background:var(--ink);transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+#mobileMenu{display:none;flex-direction:column;gap:2px;padding:12px var(--gutter) 24px;background:rgba(245,239,228,.98);border-top:1px solid var(--linen-3)}
+#mobileMenu.open{display:flex}
+#mobileMenu a{padding:12px 4px;font-size:.98rem;border-bottom:1px solid var(--linen-2)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;font-size:.88rem;font-weight:500;letter-spacing:.02em;border-radius:999px;transition:all .25s;cursor:pointer;border:1px solid transparent}
+.btn-primary{background:var(--sage-800);color:var(--linen)}
+.btn-primary:hover{background:var(--ink);transform:translateY(-1px)}
+.btn-secondary{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-secondary:hover{background:var(--ink);color:var(--linen)}
+.btn-arrow{transition:transform .3s}
+.btn:hover .btn-arrow{transform:translateX(3px)}
+
+/* =========== PAGE HERO =========== */
+.page-hero{padding:clamp(40px,6vw,80px) 0 clamp(40px,5vw,60px)}
+.page-crumbs{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
+.page-crumbs a{color:var(--sage-600);border-bottom:1px solid transparent;transition:border-color .2s}
+.page-crumbs a:hover{border-color:var(--sage-600)}
+
+/* =========== CTA STRIP =========== */
+#cta-strip{background:var(--ink);color:var(--linen);padding:clamp(64px,8vw,100px) 0}
+.cta-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.cta-grid h2{color:var(--linen);margin-bottom:12px;max-width:22ch}
+.cta-grid p{color:#b8b0a3;max-width:48ch}
+.cta-btn{display:inline-flex;align-items:center;gap:14px;padding:18px 32px;font-size:1rem;font-weight:500;background:var(--linen);color:var(--ink);border-radius:999px;transition:all .3s;white-space:nowrap}
+.cta-btn:hover{background:var(--clay-soft);transform:translateY(-2px)}
+.cta-btn .arrow{transition:transform .3s}
+.cta-btn:hover .arrow{transform:translateX(4px)}
+
+/* =========== FOOTER =========== */
+footer{background:var(--linen-2);padding:60px 0 24px;color:var(--ink-soft)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-brand{max-width:32ch}
+.foot-brand .brand{margin-bottom:16px}
+.foot-brand p{font-size:.9rem;line-height:1.7}
+.foot-col h4{font-family:'Inter',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--sage-600);margin-bottom:16px}
+.foot-col ul{display:flex;flex-direction:column;gap:10px}
+.foot-col a{font-size:.9rem;color:var(--ink-soft);transition:color .2s}
+.foot-col a:hover{color:var(--sage-800)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:22px;border-top:1px solid var(--linen-3);font-size:.8rem;color:var(--muted);flex-wrap:wrap}
+.foot-bottom a{color:var(--sage-800);border-bottom:1px solid transparent;transition:border-color .2s}
+.foot-bottom a:hover{border-color:var(--sage-600)}
+
+[data-r]{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+[data-r].in{opacity:1;transform:none}
+[data-r][data-d="1"]{transition-delay:.08s}
+[data-r][data-d="2"]{transition-delay:.16s}
+[data-r][data-d="3"]{transition-delay:.24s}
+
+@media (max-width:1000px){
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  nav ul,.cta-phone{display:none}
+  .hamburger{display:flex}
+  .cta-grid{grid-template-columns:1fr;gap:28px}
+}
+@media (max-width:600px){
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-bottom{flex-direction:column;align-items:flex-start}
+}
+
+/* ─── Témata (vymezení potíží) — editorial chips ─── */
+.temata-block {
+  margin-top: 80px;
+  padding: 64px 56px;
+  background: var(--sage-50);
+  border: 1px solid var(--sage-200);
+  border-radius: var(--radius);
+  position: relative;
+}
+.temata-block::before {
+  content: '';
+  position: absolute;
+  top: -1px; left: 56px; right: 56px; height: 3px;
+  background: linear-gradient(90deg, var(--clay) 0%, var(--sage-600) 50%, transparent 100%);
+  border-radius: 2px;
+}
+.temata-head {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 56px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+.temata-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-top: 18px;
+}
+.temata-title em {
+  font-style: italic;
+  color: var(--clay);
+}
+.temata-intro {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 50ch;
+}
+
+.temata-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.temata-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 22px;
+  background: var(--linen);
+  border: 1px solid rgba(74, 106, 84, .14);
+  border-radius: 999px;
+  font-size: .92rem;
+  color: var(--ink-soft);
+  line-height: 1.3;
+  letter-spacing: .005em;
+  transition: all .25s;
+}
+.temata-chip:hover {
+  background: var(--sage-100);
+  border-color: var(--sage-400);
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+.temata-chip--accent {
+  background: var(--sage-800);
+  border-color: var(--sage-800);
+  color: var(--linen);
+  font-weight: 500;
+}
+.temata-chip--accent:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--linen);
+}
+.temata-chip--ghost {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--sage-400);
+  color: var(--muted);
+  font-style: italic;
+}
+.temata-chip--ghost:hover {
+  background: var(--linen);
+  color: var(--ink-soft);
+}
+
+@media (max-width: 820px) {
+  .temata-block { padding: 44px 28px; margin-top: 56px; }
+  .temata-head { grid-template-columns: 1fr; gap: 20px; }
+  .temata-chip { padding: 10px 18px; font-size: .88rem; }
+}
+
+/* ─── Můj přístup (gestalt + arteterapie) ─── */
+#pristup{background:var(--sage-800);color:var(--linen)}
+#pristup h2{color:var(--linen)}
+#pristup h3{color:var(--linen)}
+#pristup .eyebrow{color:var(--sage-200)}
+#pristup .eyebrow::before{background:var(--sage-200)}
+.pristup-intro{text-align:center;max-width:680px;margin:0 auto 80px}
+.pristup-intro h2{margin-top:18px;margin-bottom:22px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.4rem,4.4vw,3.4rem);line-height:1.1;letter-spacing:-0.015em;color:var(--linen)}
+.pristup-intro p{color:var(--sage-200);line-height:1.8;font-size:1.1rem}
+.pristup-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.pristup-card{
+  background:rgba(245,239,228,.06);border:1px solid rgba(245,239,228,.14);
+  padding:40px 36px;border-radius:var(--radius);
+  transition:background .3s,border-color .3s;
+}
+.pristup-card:hover{background:rgba(245,239,228,.1);border-color:rgba(216,164,143,.3)}
+.pristup-card-head{
+  display:flex;flex-direction:column;gap:12px;
+  padding-bottom:28px;margin-bottom:32px;
+  border-bottom:1px solid rgba(245,239,228,.12);
+}
+.pristup-card-no{
+  font-family:'Inter',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--clay-soft);
+}
+.pristup-card h3{
+  margin-bottom:0;font-size:clamp(2rem,3.2vw,2.7rem);
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  line-height:1.1;letter-spacing:-0.015em;color:var(--linen);
+}
+.pristup-card h3::after{
+  content:'';display:block;width:42px;height:1px;
+  background:var(--clay);margin-top:18px;
+}
+.pristup-card .quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.18rem;color:var(--clay-soft);line-height:1.55;
+  padding:4px 0 4px 22px;border-left:2px solid var(--clay);
+  margin:0 0 28px;display:block;
+}
+.pristup-card > p{color:var(--sage-200);font-size:.98rem;line-height:1.85;margin:0 0 22px;display:block}
+.pristup-card > p:last-of-type{margin-bottom:0}
+.pristup-card ul{margin:32px 0 0;padding:28px 0 0;border-top:1px solid rgba(245,239,228,.1);display:flex;flex-direction:column;gap:16px;list-style:none}
+.pristup-card li{
+  position:relative;padding-left:22px;font-size:.92rem;
+  color:var(--linen);line-height:1.55;
+}
+.pristup-card li::before{
+  content:"";position:absolute;top:.65em;left:0;width:10px;height:1px;
+  background:var(--clay-soft);
+}
+.pristup-card li strong{color:var(--clay-soft);font-weight:500}
+@media (max-width:820px){
+  .pristup-grid{grid-template-columns:1fr;gap:18px}
+  .pristup-card{padding:30px 26px}
+}

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Odkazy v nouzi — Mgr. Martin Poláček | krizové linky a užitečné weby</title>
+  <meta name="description" content="Krizové linky a organizace, které poskytují pomoc v náročných situacích. Linka bezpečí, linka psychické pomoci, Nevypusť duši a další." />
+  <meta name="theme-color" content="#f5efe4" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .page-hero h1 em{font-style:italic;color:var(--clay)}
+
+    /* Crisis — bold red-ish accent */
+    #krize{background:var(--linen)}
+    .krize-notice{
+      background:#3a1f1f;color:var(--linen);
+      padding:24px 28px;border-radius:var(--radius);
+      display:flex;gap:20px;align-items:start;margin-bottom:48px;
+      border-left:3px solid #c4735c;
+    }
+    .krize-notice .ico{
+      font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;
+      color:#d8a48f;line-height:1;flex-shrink:0;padding-top:4px;
+    }
+    .krize-notice strong{
+      display:block;font-family:'Cormorant Garamond',serif;font-weight:500;
+      font-size:1.35rem;font-style:italic;margin-bottom:6px;color:var(--linen);
+    }
+    .krize-notice p{color:#e0d8cc;font-size:.96rem;line-height:1.65}
+    .krize-notice a{color:#d8a48f;border-bottom:1px solid #7a4436;transition:border-color .2s}
+    .krize-notice a:hover{border-color:#d8a48f}
+
+    .linky-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .linka{
+      background:var(--linen-2);border:1px solid var(--linen-3);
+      border-radius:var(--radius);padding:24px 26px;
+      display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+      transition:border-color .25s,transform .25s;
+    }
+    .linka:hover{border-color:var(--sage-400);transform:translateY(-2px)}
+    .linka .phone{
+      font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;
+      color:var(--clay);font-style:italic;line-height:1;padding-top:3px;
+      white-space:nowrap;
+    }
+    .linka h3{
+      font-family:'Cormorant Garamond',serif;font-weight:500;
+      font-size:1.2rem;margin-bottom:4px;color:var(--ink);line-height:1.25;
+    }
+    .linka p{font-size:.88rem;color:var(--ink-soft);line-height:1.55}
+    .linka .hours{
+      display:inline-block;margin-top:8px;font-size:.7rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--sage-600);font-weight:500;
+    }
+
+    #weby{background:var(--linen-2)}
+    .weby-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .web-card{
+      background:var(--linen);border:1px solid var(--linen-3);
+      border-radius:var(--radius);padding:24px 26px;
+      transition:all .25s;
+    }
+    .web-card:hover{background:var(--sage-50);border-color:var(--sage-400);transform:translateY(-2px)}
+    .web-card h3{
+      font-family:'Cormorant Garamond',serif;font-weight:500;
+      font-size:1.3rem;margin-bottom:6px;color:var(--sage-800);
+      display:flex;align-items:baseline;gap:10px;justify-content:space-between;
+    }
+    .web-card h3 a{border-bottom:1px solid transparent;transition:border-color .2s}
+    .web-card h3 a:hover{border-color:var(--sage-600)}
+    .web-card h3 .arrow{font-size:.9rem;color:var(--sage-400);transition:transform .3s;flex-shrink:0}
+    .web-card:hover h3 .arrow{transform:translateX(4px)}
+    .web-card .url{
+      display:block;font-size:.74rem;letter-spacing:.05em;color:var(--muted);
+      margin-bottom:12px;font-family:'Inter',sans-serif;
+    }
+    .web-card p{font-size:.92rem;color:var(--ink-soft);line-height:1.65}
+
+    .section-head-center{text-align:center;margin-bottom:56px;max-width:640px;margin-left:auto;margin-right:auto}
+    .section-head-center .eyebrow{justify-content:center}
+    .section-head-center h2{margin-top:14px;margin-bottom:12px}
+    .section-head-center h2 em{font-style:italic;color:var(--clay)}
+    .section-head-center p{color:var(--ink-soft);line-height:1.75;font-size:1rem}
+
+    @media (max-width:820px){
+      .linky-grid,.weby-grid{grid-template-columns:1fr}
+      .linka{grid-template-columns:1fr;gap:10px}
+      .linka .phone{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="header">
+  <div class="wrap">
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Mgr. Martin Poláček">
+        <span class="brand-mark">mp</span>
+        <span class="brand-text">
+          <strong>Mgr. Martin Poláček</strong>
+          <small>Poradenská psychoterapie · Plzeň</small>
+        </span>
+      </a>
+      <nav aria-label="Hlavní navigace">
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="index.html#pomoc">Co nabízím</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+420739019133" class="cta-phone"><span>+420 739 019 133</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" role="navigation">
+    <a href="o-mne.html">O mně</a>
+    <a href="index.html#pomoc">Co nabízím</a>
+    <a href="blog.html">Blog</a>
+    <a href="akce.html">Akce</a>
+    <a href="krasy-kolem-nas.html">Krásy kolem nás</a>
+    <a href="index.html#cenik">Ceník</a>
+    <a href="odkazy.html">Odkazy v nouzi</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="tel:+420739019133">+420 739 019 133</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div data-r>
+      <div class="page-crumbs"><a href="index.html">Úvod</a> &nbsp;/&nbsp; Odkazy v&nbsp;nouzi</div>
+      <div class="eyebrow">Krizová pomoc &amp; zdroje</div>
+      <h1 style="margin-top:14px">Když potřebujete <em>pomoc hned</em></h1>
+      <p class="lead" style="margin-top:18px;max-width:58ch">
+        Nejste na to sami. Pokud se ocitáte v&nbsp;akutní krizi — vy nebo někdo
+        blízký — tady je přehled linek a&nbsp;organizací, které vám můžou pomoci.
+        Některé jsou dostupné <strong style="color:var(--ink);font-weight:500">24&nbsp;hodin denně</strong>
+        a zdarma.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- KRIZOVÉ LINKY -->
+<section id="krize">
+  <div class="wrap">
+    <div class="krize-notice" data-r>
+      <span class="ico">!</span>
+      <div>
+        <strong>Jste v&nbsp;bezprostředním ohrožení?</strong>
+        <p>
+          Volejte <a href="tel:155">155 — zdravotnickou záchrannou službu</a>
+          nebo <a href="tel:112">112 — jednotné evropské číslo tísňového volání</a>.
+          Nebo zajděte na&nbsp;nejbližší akutní psychiatrickou ambulanci.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-head-center" data-r>
+      <div class="eyebrow eyebrow--center">Krizové linky</div>
+      <h2>Někdo, kdo <em>naslouchá</em></h2>
+      <p>Zavolat jako první krok, i&nbsp;když nevím, kam dál — to může udělat velký rozdíl.</p>
+    </div>
+
+    <div class="linky-grid">
+      <div class="linka" data-r>
+        <div class="phone"><a href="tel:116111">116&nbsp;111</a></div>
+        <div>
+          <h3>Linka bezpečí</h3>
+          <p>Pro děti a&nbsp;mladé lidi do&nbsp;26&nbsp;let. Anonymní a&nbsp;zdarma. Jakékoliv téma.</p>
+          <span class="hours">24/7 · anonymní</span>
+        </div>
+      </div>
+
+      <div class="linka" data-r data-d="1">
+        <div class="phone"><a href="tel:116123">116&nbsp;123</a></div>
+        <div>
+          <h3>Linka první psychické pomoci</h3>
+          <p>Pro dospělé v&nbsp;krizi. Anonymní, zdarma, odborná první pomoc v&nbsp;psychické krizi.</p>
+          <span class="hours">24/7 · anonymní</span>
+        </div>
+      </div>
+
+      <div class="linka" data-r>
+        <div class="phone"><a href="tel:777167004">777&nbsp;167&nbsp;004</a></div>
+        <div>
+          <h3>Terénní krizová služba</h3>
+          <p>Bezplatná terénní krizová pomoc s&nbsp;výjezdem do&nbsp;domácnosti, pokud je potřeba.</p>
+          <span class="hours">24/7 · bezplatná</span>
+        </div>
+      </div>
+
+      <div class="linka" data-r data-d="1">
+        <div class="phone"><a href="tel:222580697">222&nbsp;580&nbsp;697</a></div>
+        <div>
+          <h3>Linka důvěry RIAPS Praha</h3>
+          <p>Psychologická a&nbsp;sociální podpora v&nbsp;krizových situacích.</p>
+          <span class="hours">24/7</span>
+        </div>
+      </div>
+
+      <div class="linka" data-r>
+        <div class="phone"><a href="tel:377103862">377&nbsp;103&nbsp;862</a></div>
+        <div>
+          <h3>Akutní ambulance psychiatrické kliniky Plzeň</h3>
+          <p>Nepřetržitá akutní psychiatrická ambulance pro&nbsp;plzeňský region.</p>
+          <span class="hours">24/7 · Plzeň</span>
+        </div>
+      </div>
+
+      <div class="linka" data-r data-d="1">
+        <div class="phone"><a href="tel:155">155</a></div>
+        <div>
+          <h3>Zdravotnická záchranná služba</h3>
+          <p>Pokud jste vy nebo někdo vedle vás v&nbsp;bezprostředním ohrožení života.</p>
+          <span class="hours">24/7 · bezplatné</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UŽITEČNÉ WEBY -->
+<section id="weby">
+  <div class="wrap">
+    <div class="section-head-center" data-r>
+      <div class="eyebrow eyebrow--center">Užitečné zdroje</div>
+      <h2>Kam se obrátit <em>za informacemi</em></h2>
+      <p>Organizace, které dělají skvělou práci v&nbsp;péči o&nbsp;psychické zdraví.</p>
+    </div>
+
+    <div class="weby-grid">
+      <a href="https://www.rodicovskalinka.cz" target="_blank" rel="noopener" class="web-card" data-r>
+        <h3>
+          <span>Rodičovská linka</span>
+          <span class="arrow">↗</span>
+        </h3>
+        <span class="url">rodicovskalinka.cz</span>
+        <p>Krizová a&nbsp;poradenská pomoc pro rodiče, pěstouny a&nbsp;další, kteří pečují o&nbsp;děti.</p>
+      </a>
+
+      <a href="https://www.linkabezpeci.cz" target="_blank" rel="noopener" class="web-card" data-r data-d="1">
+        <h3>
+          <span>Linka bezpečí</span>
+          <span class="arrow">↗</span>
+        </h3>
+        <span class="url">linkabezpeci.cz</span>
+        <p>Podpora a&nbsp;porozumění pro děti a&nbsp;mladé lidi do&nbsp;26&nbsp;let.</p>
+      </a>
+
+      <a href="https://www.anabell.cz" target="_blank" rel="noopener" class="web-card" data-r>
+        <h3>
+          <span>Centrum Anabell</span>
+          <span class="arrow">↗</span>
+        </h3>
+        <span class="url">anabell.cz</span>
+        <p>Pomoc a&nbsp;podpora lidem s&nbsp;poruchami příjmu potravy a&nbsp;jejich blízkým.</p>
+      </a>
+
+      <a href="https://www.nevypustdusi.cz" target="_blank" rel="noopener" class="web-card" data-r data-d="1">
+        <h3>
+          <span>Nevypusť duši</span>
+          <span class="arrow">↗</span>
+        </h3>
+        <span class="url">nevypustdusi.cz</span>
+        <p>Prevence a&nbsp;péče o&nbsp;duševní zdraví — pro&nbsp;mladé, školy i&nbsp;rodiče.</p>
+      </a>
+
+      <a href="https://opatruj.se" target="_blank" rel="noopener" class="web-card" data-r>
+        <h3>
+          <span>Opatruj se</span>
+          <span class="arrow">↗</span>
+        </h3>
+        <span class="url">opatruj.se</span>
+        <p>Průvodce psychickou odolností — jednoduché nástroje pro&nbsp;všední i&nbsp;náročné dny.</p>
+      </a>
+
+      <a href="https://tisictvariradosti.cz" target="_blank" rel="noopener" class="web-card" data-r data-d="1">
+        <h3>
+          <span>Tisíc tváří radosti</span>
+          <span class="arrow">↗</span>
+        </h3>
+        <span class="url">tisictvariradosti.cz</span>
+        <p>Materiály o&nbsp;emočním vzdělávání dětí — pro&nbsp;rodiče, učitele a&nbsp;odborníky.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-strip">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div data-r>
+        <div class="eyebrow eyebrow--light">Osobní podpora</div>
+        <h2 style="margin-top:14px">Potřebujete někoho <em style="color:var(--clay-soft);font-style:italic">blíž</em>?</h2>
+        <p style="margin-top:12px">
+          Pokud akutně potřebujete podporu, zavolejte některou z&nbsp;linek výše.
+          Pokud hledáte dlouhodobější terapeutickou spolupráci, ozvěte se mi.
+        </p>
+      </div>
+      <a href="tel:+420739019133" class="cta-btn" data-r data-d="1">
+        <span>+420 739 019 133</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">mp</span>
+          <span class="brand-text">
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Poradenská psychoterapie · Plzeň</small>
+          </span>
+        </a>
+        <p>Psychoterapeutická praxe pro dospívající, mladé dospělé&nbsp;a rodiny. Gestalt&nbsp;přístup a arteterapie.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Web</h4>
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="krasy-kolem-nas.html">Krásy kolem nás</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="odkazy.html">Odkazy v&nbsp;nouzi</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+420739019133">+420 739 019 133</a></li>
+          <li><a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a></li>
+          <li>Zikmunda Wintra 21</li>
+          <li>301 00 Plzeň</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Najdete mě i&nbsp;zde</h4>
+        <ul>
+          <li><a href="https://www.firmy.cz/detail/13888345-mgr-martin-polacek-psychoterapie-plzen-jizni-predmesti.html" target="_blank" rel="noopener">Firmy.cz&nbsp;↗</a></li>
+          <li><a href="https://czap.cz/adresar" target="_blank" rel="noopener">Adresář ČAP&nbsp;↗</a></li>
+          <li><a href="https://dusevnizdravi.vzp.cz/seznam-terapeutu/" target="_blank" rel="noopener">VZP Duševní zdraví&nbsp;↗</a></li>
+          <li><a href="https://csgt.cz/terapeuti-plzensky-kraj/" target="_blank" rel="noopener">ČSGT&nbsp;↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mgr. Martin Poláček · IČO 09438661</span>
+      <span>Web: <a href="https://strankyprovas.cz" target="_blank" rel="noopener">StránkyProVás</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const progress=document.getElementById('progress');
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>{const pct=(window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight))*100;progress.style.width=pct+'%';header.classList.toggle('scrolled',window.scrollY>10)});
+  const btn=document.getElementById('hamburgerBtn'),menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
