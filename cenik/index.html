@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ceník — Mgr. Martin Poláček | psychoterapie a arteterapie Plzeň</title>
+  <meta name="description" content="Ceník psychoterapie a arteterapie v Plzni: individuální terapie 1 000 Kč / 50 minut, konzultace o výchově 1 500 Kč / 90 minut, seberozvojová arteterapie 1 800 Kč / 90 minut. Příspěvky zdravotních pojišťoven, storno 24 hodin předem." />
+  <meta name="theme-color" content="#f5efe4" />
+  <link rel="canonical" href="https://terapiepolacek.cz/cenik/" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    .page-hero h1 em{font-style:italic;color:var(--clay)}
+    .serif{font-family:'Cormorant Garamond','Iowan Old Style',Georgia,serif;font-weight:400;letter-spacing:-0.01em}
+
+    #cenik{background:var(--sage-800);color:var(--linen)}
+    #cenik h2{color:var(--linen)}
+    #cenik .lead{color:var(--sage-200)}
+    .cenik-grid{
+      display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(40px,6vw,96px);
+    }
+    .cenik-info .eyebrow{color:var(--sage-200)}
+    .cenik-info .eyebrow::before{background:var(--sage-200)}
+    .cenik-info h2{margin-top:14px;margin-bottom:22px}
+    .cenik-info p{color:var(--sage-200);line-height:1.75;margin-bottom:14px;font-size:.98rem}
+    .cenik-list{display:flex;flex-direction:column;gap:0}
+    .cenik-row{
+      display:grid;grid-template-columns:1fr auto;align-items:start;
+      gap:24px;padding:26px 0;
+      border-bottom:1px solid rgba(245,239,228,.14);
+    }
+    .cenik-row:first-child{padding-top:0}
+    .cenik-row:last-child{border-bottom:none}
+    .cenik-row-title{
+      font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;
+      color:var(--linen);margin-bottom:6px;
+    }
+    .cenik-row-desc{font-size:.92rem;color:var(--sage-200);line-height:1.6;max-width:46ch}
+    .cenik-row-price{text-align:right;white-space:nowrap}
+    .cenik-row-price strong{
+      display:block;font-family:'Cormorant Garamond',serif;font-weight:500;
+      font-size:1.7rem;color:var(--clay-soft);line-height:1;
+    }
+    .cenik-row-price span{
+      display:block;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+      color:var(--sage-200);margin-top:6px;
+    }
+    .cenik-note{
+      margin-top:30px;padding:20px 24px;
+      background:rgba(245,239,228,.06);border-left:2px solid var(--clay-soft);
+      font-size:.88rem;color:var(--sage-200);line-height:1.7;
+    }
+
+    #jak-platit{background:var(--linen)}
+    .platba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto}
+    .platba-card{
+      background:var(--linen-2);border:1px solid var(--linen-3);
+      border-radius:var(--radius);padding:32px 30px;position:relative;overflow:hidden;
+    }
+    .platba-card::before{
+      content:"";position:absolute;top:0;left:0;bottom:0;width:3px;
+      background:var(--clay);opacity:.8;
+    }
+    .platba-card h3{
+      font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.4rem;
+      color:var(--ink);margin-bottom:10px;line-height:1.2;
+    }
+    .platba-card p{color:var(--ink-soft);line-height:1.7;font-size:.95rem}
+
+    @media (max-width:900px){
+      .cenik-grid{grid-template-columns:1fr;gap:36px}
+      .cenik-info{order:-1}
+      .cenik-row{grid-template-columns:1fr;gap:8px}
+      .cenik-row-price{text-align:left}
+      .platba-grid{grid-template-columns:1fr;gap:20px}
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="header">
+  <div class="wrap">
+    <div class="nav">
+      <a href="../index.html" class="brand" aria-label="Mgr. Martin Poláček">
+        <span class="brand-mark">mp</span>
+        <span class="brand-text">
+          <strong>Mgr. Martin Poláček</strong>
+          <small>Poradenská psychoterapie · Plzeň</small>
+        </span>
+      </a>
+      <nav aria-label="Hlavní navigace">
+        <ul>
+          <li><a href="../o-mne.html">O mně</a></li>
+          <li><a href="../index.html#pomoc">Co nabízím</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../akce.html">Akce</a></li>
+          <li><a href="./" class="active">Ceník</a></li>
+          <li><a href="../index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+420739019133" class="cta-phone"><span>+420 739 019 133</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" role="navigation">
+    <a href="../o-mne.html">O mně</a>
+    <a href="../index.html#pomoc">Co nabízím</a>
+    <a href="../blog.html">Blog</a>
+    <a href="../akce.html">Akce</a>
+    <a href="../krasy-kolem-nas.html">Krásy kolem nás</a>
+    <a href="./">Ceník</a>
+    <a href="../odkazy.html">Odkazy v nouzi</a>
+    <a href="../index.html#kontakt">Kontakt</a>
+    <a href="tel:+420739019133">+420 739 019 133</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div data-r>
+      <div class="page-crumbs"><a href="../index.html">Úvod</a> &nbsp;/&nbsp; Ceník</div>
+      <div class="eyebrow">Ceník</div>
+      <h1 style="margin-top:14px">Jasně <em>a&nbsp;férově</em></h1>
+      <p class="lead" style="margin-top:18px">
+        Ceny sezení v&nbsp;mé plzeňské praxi — bez skrytých položek.
+        Díky členství v&nbsp;ČAP je možné využít příspěvku
+        u&nbsp;většiny zdravotních pojišťoven, a&nbsp;při vyšší frekvenci sezení
+        nebo finanční nouzi se vždy dá domluvit sleva.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CENÍK -->
+<section id="cenik">
+  <div class="wrap">
+    <div class="cenik-grid">
+      <div class="cenik-info" data-r>
+        <div class="eyebrow">Platba a&nbsp;příspěvky</div>
+        <h2>Co je dobré<br>vědět předem</h2>
+        <p>
+          Platba proběhne převodem v&nbsp;den sezení — do zprávy stačí
+          vaše jméno a&nbsp;datum schůzky.
+        </p>
+        <p>
+          Díky členství v&nbsp;<strong style="color:var(--clay-soft)">ČAP</strong>
+          je možné využít finanční podpory u&nbsp;většiny zdravotních pojišťoven.
+          V&nbsp;případě vyšší frekvence sezení nebo finanční nouze lze domluvit slevu.
+        </p>
+        <p style="margin-top:10px;">
+          <a href="../dokumenty/zp-klienti-2026.pdf" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(245,239,228,.08);border:1px solid rgba(245,239,228,.18);border-radius:99px;color:var(--linen);font-size:.85rem;letter-spacing:.04em;text-decoration:none;transition:all .25s;"
+             onmouseover="this.style.background='rgba(245,239,228,.14)'"
+             onmouseout="this.style.background='rgba(245,239,228,.08)'">
+            <span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--clay-soft);">PDF</span>
+            <span>Přehled zdravotních pojišťoven 2026</span>
+            <span style="opacity:.7;">↗</span>
+          </a>
+        </p>
+      </div>
+
+      <div class="cenik-list" data-r data-d="1">
+        <div class="cenik-row">
+          <div>
+            <div class="cenik-row-title">Individuální terapie</div>
+            <div class="cenik-row-desc">Pro děti, dospívající, mladé dospělé i&nbsp;dospělé klienty. Primárně osobně v&nbsp;Plzni — online sezení nabízím spíše výjimečně, především pokud klient nemůže přijít osobně (např. z&nbsp;důvodu nemoci nebo psychických bloků).</div>
+          </div>
+          <div class="cenik-row-price">
+            <strong>1&nbsp;000&nbsp;Kč</strong>
+            <span>50 minut</span>
+          </div>
+        </div>
+
+        <div class="cenik-row">
+          <div>
+            <div class="cenik-row-title">Konzultace o&nbsp;výchově mimo terapii</div>
+            <div class="cenik-row-desc">Pro rodiče dětí a&nbsp;dospívajících — delší čas, prostor na souvislosti i&nbsp;konkrétní situace.</div>
+          </div>
+          <div class="cenik-row-price">
+            <strong>1&nbsp;500&nbsp;Kč</strong>
+            <span>90 minut</span>
+          </div>
+        </div>
+
+        <div class="cenik-row">
+          <div>
+            <div class="cenik-row-title">Individuální seberozvojová arteterapie</div>
+            <div class="cenik-row-desc">Hlubší arteterapeutická práce — tvorba jako cesta k&nbsp;sobě. Materiál a&nbsp;pomůcky v&nbsp;ceně.</div>
+          </div>
+          <div class="cenik-row-price">
+            <strong>1&nbsp;800&nbsp;Kč</strong>
+            <span>90 minut</span>
+          </div>
+        </div>
+
+        <div class="cenik-note">
+          <strong style="color:var(--linen)">Storno podmínky.</strong>
+          Sezení lze bezplatně zrušit nejpozději <strong style="color:var(--linen)">24&nbsp;hodin</strong>
+          předem. Později zrušená schůzka může být účtována.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JAK TO PROBÍHÁ -->
+<section id="jak-platit">
+  <div class="wrap">
+    <div class="platba-grid">
+      <div class="platba-card" data-r>
+        <h3>Platba převodem</h3>
+        <p>
+          Platí se převodem v&nbsp;den sezení. Do zprávy pro příjemce stačí
+          vaše jméno a&nbsp;datum schůzky, ať se platba dá spárovat.
+        </p>
+      </div>
+      <div class="platba-card" data-r data-d="1">
+        <h3>Příspěvek pojišťovny</h3>
+        <p>
+          Jsem členem <strong style="color:var(--sage-800);font-weight:500;">ČAP</strong>, takže na sezení
+          lze u&nbsp;většiny zdravotních pojišťoven čerpat příspěvek. Přehled
+          podmínek pro rok 2026 najdete v&nbsp;PDF výše.
+        </p>
+      </div>
+      <div class="platba-card" data-r data-d="2">
+        <h3>Když je to finančně těžké</h3>
+        <p>
+          Při vyšší frekvenci sezení nebo ve&nbsp;finanční nouzi se dá domluvit
+          sleva. Nebojte se o&nbsp;tom mluvit — peníze nemají být důvod,
+          proč terapii nezačít.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section id="cta-strip">
+  <div class="wrap">
+    <div class="cta-grid">
+      <div data-r>
+        <div class="eyebrow eyebrow--light">Kontakt</div>
+        <h2 style="margin-top:14px" class="serif">
+          První krok je <em style="color:var(--clay-soft);font-style:italic;">nejtěžší</em> —<br>stačí zavolat.
+        </h2>
+        <p style="margin-top:12px">
+          Není potřeba mít všechno pojmenované ani vědět, „jak&nbsp;to celé je".
+          Stačí zvednout telefon a&nbsp;domluvit úvodní konzultaci.
+        </p>
+      </div>
+      <a href="tel:+420739019133" class="cta-btn" data-r data-d="1">
+        <span>+420 739 019 133</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="../index.html" class="brand">
+          <span class="brand-mark">mp</span>
+          <span class="brand-text">
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Poradenská psychoterapie · Plzeň</small>
+          </span>
+        </a>
+        <p>Psychoterapeutická praxe pro dospívající, mladé dospělé&nbsp;a rodiny. Gestalt&nbsp;přístup a arteterapie.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Web</h4>
+        <ul>
+          <li><a href="../o-mne.html">O mně</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../akce.html">Akce</a></li>
+          <li><a href="../krasy-kolem-nas.html">Krásy kolem nás</a></li>
+          <li><a href="./">Ceník</a></li>
+          <li><a href="../odkazy.html">Odkazy v&nbsp;nouzi</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+420739019133">+420 739 019 133</a></li>
+          <li><a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a></li>
+          <li>Zikmunda Wintra 21</li>
+          <li>301 00 Plzeň</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Najdete mě i&nbsp;zde</h4>
+        <ul>
+          <li><a href="https://www.firmy.cz/detail/13888345-mgr-martin-polacek-psychoterapie-plzen-jizni-predmesti.html" target="_blank" rel="noopener">Firmy.cz&nbsp;↗</a></li>
+          <li><a href="https://czap.cz/adresar" target="_blank" rel="noopener">Adresář ČAP&nbsp;↗</a></li>
+          <li><a href="https://dusevnizdravi.vzp.cz/seznam-terapeutu/" target="_blank" rel="noopener">VZP Duševní zdraví&nbsp;↗</a></li>
+          <li><a href="https://csgt.cz/terapeuti-plzensky-kraj/" target="_blank" rel="noopener">ČSGT&nbsp;↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mgr. Martin Poláček · IČO 09438661</span>
+      <span>Web: <a href="https://strankyprovas.cz" target="_blank" rel="noopener">StránkyProVás</a></span>
+    </div>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Psychoterapie a arteterapie — Mgr. Martin Poláček",
+  "serviceType": "Poradenská psychoterapie",
+  "areaServed": "Plzeň",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Mgr. Martin Poláček PSYCHOTERAPIE",
+    "telephone": "+420739019133",
+    "email": "info@terapiepolacek.cz",
+    "url": "https://terapiepolacek.cz",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Zikmunda Wintra 21",
+      "postalCode": "301 00",
+      "addressLocality": "Plzeň",
+      "addressCountry": "CZ"
+    }
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Ceník",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "price": "1000",
+        "priceCurrency": "CZK",
+        "itemOffered": { "@type": "Service", "name": "Individuální terapie (50 minut)" }
+      },
+      {
+        "@type": "Offer",
+        "price": "1500",
+        "priceCurrency": "CZK",
+        "itemOffered": { "@type": "Service", "name": "Konzultace o výchově mimo terapii (90 minut)" }
+      },
+      {
+        "@type": "Offer",
+        "price": "1800",
+        "priceCurrency": "CZK",
+        "itemOffered": { "@type": "Service", "name": "Individuální seberozvojová arteterapie (90 minut)" }
+      }
+    ]
+  }
+}
+</script>
+
+<script>
+  const progress=document.getElementById('progress');
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>{const pct=(window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight))*100;progress.style.width=pct+'%';header.classList.toggle('scrolled',window.scrollY>10)});
+  const btn=document.getElementById('hamburgerBtn'),menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
