@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zásady ochrany osobních údajů | Mgr. Martin Poláček</title>
+    <link rel="canonical" href="https://terapiepolacek.cz/zasady-ochrany-osobnich-udaju.html">
+  <meta name="description" content="Krizové linky a organizace, které poskytují pomoc v náročných situacích. Linka bezpečí, linka psychické pomoci, Nevypusť duši a další." />
+  <meta name="theme-color" content="#f5efe4" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .page-hero h1 em{font-style:italic;color:var(--clay)}
+
+    /* Crisis — bold red-ish accent */
+    #krize{background:var(--linen)}
+    .krize-notice{
+      background:#3a1f1f;color:var(--linen);
+      padding:24px 28px;border-radius:var(--radius);
+      display:flex;gap:20px;align-items:start;margin-bottom:48px;
+      border-left:3px solid #c4735c;
+    }
+    .krize-notice .ico{
+      font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-style:italic;
+      color:#d8a48f;line-height:1;flex-shrink:0;padding-top:4px;
+    }
+    .krize-notice strong{
+      display:block;font-family:'Cormorant Garamond',serif;font-weight:500;
+      font-size:1.35rem;font-style:italic;margin-bottom:6px;color:var(--linen);
+    }
+    .krize-notice p{color:#e0d8cc;font-size:.96rem;line-height:1.65}
+    .krize-notice a{color:#d8a48f;border-bottom:1px solid #7a4436;transition:border-color .2s}
+    .krize-notice a:hover{border-color:#d8a48f}
+
+    .linky-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .linka{
+      background:var(--linen-2);border:1px solid var(--linen-3);
+      border-radius:var(--radius);padding:24px 26px;
+      display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+      transition:border-color .25s,transform .25s;
+    }
+    .linka:hover{border-color:var(--sage-400);transform:translateY(-2px)}
+    .linka .phone{
+      font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:500;
+      color:var(--clay);font-style:italic;line-height:1;padding-top:3px;
+      white-space:nowrap;
+    }
+    .linka h3{
+      font-family:'Cormorant Garamond',serif;font-weight:500;
+      font-size:1.2rem;margin-bottom:4px;color:var(--ink);line-height:1.25;
+    }
+    .linka p{font-size:.88rem;color:var(--ink-soft);line-height:1.55}
+    .linka .hours{
+      display:inline-block;margin-top:8px;font-size:.7rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--sage-600);font-weight:500;
+    }
+
+    #weby{background:var(--linen-2)}
+    .weby-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .web-card{
+      background:var(--linen);border:1px solid var(--linen-3);
+      border-radius:var(--radius);padding:24px 26px;
+      transition:all .25s;
+    }
+    .web-card:hover{background:var(--sage-50);border-color:var(--sage-400);transform:translateY(-2px)}
+    .web-card h3{
+      font-family:'Cormorant Garamond',serif;font-weight:500;
+      font-size:1.3rem;margin-bottom:6px;color:var(--sage-800);
+      display:flex;align-items:baseline;gap:10px;justify-content:space-between;
+    }
+    .web-card h3 a{border-bottom:1px solid transparent;transition:border-color .2s}
+    .web-card h3 a:hover{border-color:var(--sage-600)}
+    .web-card h3 .arrow{font-size:.9rem;color:var(--sage-400);transition:transform .3s;flex-shrink:0}
+    .web-card:hover h3 .arrow{transform:translateX(4px)}
+    .web-card .url{
+      display:block;font-size:.74rem;letter-spacing:.05em;color:var(--muted);
+      margin-bottom:12px;font-family:'Inter',sans-serif;
+    }
+    .web-card p{font-size:.92rem;color:var(--ink-soft);line-height:1.65}
+
+    .section-head-center{text-align:center;margin-bottom:56px;max-width:640px;margin-left:auto;margin-right:auto}
+    .section-head-center .eyebrow{justify-content:center}
+    .section-head-center h2{margin-top:14px;margin-bottom:12px}
+    .section-head-center h2 em{font-style:italic;color:var(--clay)}
+    .section-head-center p{color:var(--ink-soft);line-height:1.75;font-size:1rem}
+
+    @media (max-width:820px){
+      .linky-grid,.weby-grid{grid-template-columns:1fr}
+      .linka{grid-template-columns:1fr;gap:10px}
+      .linka .phone{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="header">
+  <div class="wrap">
+    <div class="nav">
+      <a href="index.html" class="brand" aria-label="Mgr. Martin Poláček">
+        <span class="brand-mark">mp</span>
+        <span class="brand-text">
+          <strong>Mgr. Martin Poláček</strong>
+          <small>Poradenská psychoterapie · Plzeň</small>
+        </span>
+      </a>
+      <nav aria-label="Hlavní navigace">
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="index.html#pomoc">Co nabízím</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="index.html#cenik">Ceník</a></li>
+          <li><a href="index.html#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+420739019133" class="cta-phone"><span>+420 739 019 133</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Otevřít menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" role="navigation">
+    <a href="o-mne.html">O mně</a>
+    <a href="index.html#pomoc">Co nabízím</a>
+    <a href="blog.html">Blog</a>
+    <a href="akce.html">Akce</a>
+    <a href="krasy-kolem-nas.html">Krásy kolem nás</a>
+    <a href="index.html#cenik">Ceník</a>
+    <a href="odkazy.html">Odkazy v nouzi</a>
+    <a href="index.html#kontakt">Kontakt</a>
+    <a href="tel:+420739019133">+420 739 019 133</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div data-r>
+      <div class="page-crumbs"><a href="index.html">Úvod</a> &nbsp;/&nbsp; Zásady ochrany osobních údajů</div>
+      <div class="eyebrow">Ochrana soukromí</div>
+      <h1 style="margin-top:14px">Zásady ochrany <em>osobních údajů</em></h1>
+      <p class="lead" style="margin-top:18px;max-width:60ch">
+        Vážím si vašeho soukromí. Tady se dozvíte, jaké osobní údaje zpracovávám, proč,
+        jak dlouho a jaká máte práva. Zpracování se řídí nařízením <strong style="color:var(--ink);font-weight:500">GDPR</strong>
+        a zákonem č.&nbsp;110/2019&nbsp;Sb.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- OBSAH -->
+<section id="zasady">
+  <div class="wrap">
+    <div data-r style="max-width:72ch;line-height:1.75">
+
+      <h2>1. Kdo údaje zpracovává (správce)</h2>
+      <p><strong>Mgr. Martin Poláček</strong>, psychoterapeut<br>
+      IČO: 09438661<br>
+      Zikmunda Wintra 21, 301&nbsp;00 Plzeň<br>
+      E-mail: <a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a> &nbsp;·&nbsp; Tel.: <a href="tel:+420739019133">+420&nbsp;739&nbsp;019&nbsp;133</a></p>
+
+      <h2>2. Jaké údaje zpracovávám</h2>
+      <p>Prostřednictvím webu zpracovávám pouze údaje, které mi sami předáte — nejčastěji přes kontaktní formulář, e-mail nebo telefon:</p>
+      <ul>
+        <li>jméno (případně příjmení),</li>
+        <li>e-mailovou adresu a telefonní číslo,</li>
+        <li>obsah vaší zprávy či dotazu.</li>
+      </ul>
+      <p>Web nevyžaduje registraci a sám od sebe o vás neshromažďuje žádné další údaje.</p>
+
+      <h2>3. Proč údaje zpracovávám a na jakém základě</h2>
+      <ul>
+        <li><strong>Vyřízení vaší poptávky a domluvení konzultace</strong> — právním základem je jednání o smlouvě na vaši žádost (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;b GDPR).</li>
+        <li><strong>Odpověď na dotaz</strong> a následná komunikace — na základě mého oprávněného zájmu vám odpovědět (čl.&nbsp;6 odst.&nbsp;1 písm.&nbsp;f GDPR).</li>
+      </ul>
+      <p>Údaje nepoužívám k zasílání obchodních sdělení ani k žádnému profilování.</p>
+
+      <h2>4. Jak dlouho údaje uchovávám</h2>
+      <p>Údaje z poptávek a dotazů uchovávám jen po dobu nezbytně nutnou k jejich vyřízení a naší komunikaci, nejdéle po dobu stanovenou právními předpisy. Poté je bezpečně odstraním.</p>
+
+      <h2>5. Komu údaje předávám</h2>
+      <p>Vaše údaje neprodávám ani nepředávám třetím stranám k jejich vlastním účelům. Přístup k nim může mít pouze poskytovatel technického provozu webu a e-mailu (zpracovatel), a to výhradně za účelem zajištění provozu a v nezbytném rozsahu. Údaje nepředávám mimo EU.</p>
+
+      <h2>6. Cookies</h2>
+      <p>Web používá pouze technicky nezbytné soubory cookies potřebné pro jeho správné fungování. Nevyužívám reklamní ani sledovací cookies.</p>
+
+      <h2>7. Vaše práva</h2>
+      <p>Ve vztahu ke svým údajům máte právo na:</p>
+      <ul>
+        <li>přístup k údajům a jejich kopii,</li>
+        <li>opravu nepřesných údajů,</li>
+        <li>výmaz („právo být zapomenut"),</li>
+        <li>omezení zpracování,</li>
+        <li>vznesení námitky proti zpracování,</li>
+        <li>přenositelnost údajů.</li>
+      </ul>
+      <p>Svá práva můžete uplatnit kdykoli na e-mailu <a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a>. Máte také právo podat stížnost u dozorového úřadu, kterým je <a href="https://www.uoou.cz" target="_blank" rel="noopener">Úřad pro ochranu osobních údajů</a> (uoou.cz).</p>
+
+      <h2>8. Mlčenlivost při terapii</h2>
+      <p>Údaje, které mi sdělíte v rámci samotné psychoterapie, podléhají profesní mlčenlivosti a chráním je nad rámec těchto zásad v souladu s etickými pravidly mé profese.</p>
+
+      <p style="margin-top:28px;color:var(--mut,#777);font-size:.92rem">Tyto zásady jsou účinné od 14.&nbsp;11.&nbsp;2026. V případě změny zde zveřejním aktuální verzi.</p>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">mp</span>
+          <span class="brand-text">
+            <strong>Mgr. Martin Poláček</strong>
+            <small>Poradenská psychoterapie · Plzeň</small>
+          </span>
+        </a>
+        <p>Psychoterapeutická praxe pro dospívající, mladé dospělé&nbsp;a rodiny. Gestalt&nbsp;přístup a arteterapie.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Web</h4>
+        <ul>
+          <li><a href="o-mne.html">O mně</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="akce.html">Akce</a></li>
+          <li><a href="krasy-kolem-nas.html">Krásy kolem nás</a></li>
+          <li><a href="cenik/">Ceník</a></li>
+          <li><a href="odkazy.html">Odkazy v&nbsp;nouzi</a></li>
+          <li><a href="zasady-ochrany-osobnich-udaju.html">Zásady ochrany osobních údajů</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="tel:+420739019133">+420 739 019 133</a></li>
+          <li><a href="mailto:info@terapiepolacek.cz">info@terapiepolacek.cz</a></li>
+          <li>Zikmunda Wintra 21</li>
+          <li>301 00 Plzeň</li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Najdete mě i&nbsp;zde</h4>
+        <ul>
+          <li><a href="https://www.firmy.cz/detail/13888345-mgr-martin-polacek-psychoterapie-plzen-jizni-predmesti.html" target="_blank" rel="noopener">Firmy.cz&nbsp;↗</a></li>
+          <li><a href="https://czap.cz/adresar" target="_blank" rel="noopener">Adresář ČAP&nbsp;↗</a></li>
+          <li><a href="https://dusevnizdravi.vzp.cz/seznam-terapeutu/" target="_blank" rel="noopener">VZP Duševní zdraví&nbsp;↗</a></li>
+          <li><a href="https://csgt.cz/terapeuti-plzensky-kraj/" target="_blank" rel="noopener">ČSGT&nbsp;↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mgr. Martin Poláček · IČO 09438661</span>
+      <span>Web: <a href="https://strankyprovas.cz" target="_blank" rel="noopener">StránkyProVás</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const progress=document.getElementById('progress');
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>{const pct=(window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight))*100;progress.style.width=pct+'%';header.classList.toggle('scrolled',window.scrollY>10)});
+  const btn=document.getElementById('hamburgerBtn'),menu=document.getElementById('mobileMenu');
+  btn.addEventListener('click',()=>{const open=menu.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');btn.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
+  const io=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
